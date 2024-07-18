@@ -19,7 +19,7 @@ export default function ShowPosts({ posts, editPost, deletePost }) {
     const originalIndex = posts.findIndex(post => post.id === displayedPosts[index].id && post.body === displayedPosts[index].body && post.tags === displayedPosts[index].tags);
     const updatedPost = prompt("Edit your post:", posts[originalIndex].post);
     if (updatedPost) {
-      editPost(index, { ...posts[index], post: updatedPost });
+      editPost(index, { ...posts[originalIndex], post: updatedPost });
     }
   };
 

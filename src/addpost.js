@@ -40,11 +40,13 @@ export default function AddPost({ addPost, isLoggedIn, uid, profPic }) {
         event.preventDefault();
         const currentDate = new Date().toISOString(); // Set the current date and time
     setDateCreated(currentDate);
+    if(post !== ''){
         addPost(post, tags, currentDate, imagePreview); // Pass the imagePreview URL and dateCreated
         setPost('');
         setTags('');
     setImage(null);
-    setImagePreview(null);
+    setImagePreview(null);}
+    else{return}
     };
 
     return (

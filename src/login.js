@@ -68,7 +68,7 @@ export default function Login({ logInOut, isLoggedIn, uid }) {
                         maxLength: 20 
                         }}
                     />
-                        <div><Avatar onClick={() => handleAvatarClick(0)} src="images/cat.jpeg"></Avatar>
+                        <div style={{ display: 'flex' }}><Avatar onClick={() => handleAvatarClick(0)} src="images/cat.jpeg"></Avatar>
             <Avatar onClick={() => handleAvatarClick(1)} src="images/elephant.jpeg"></Avatar>
             <Avatar onClick={() => handleAvatarClick(2)} src="images/nutty.jpeg"></Avatar>
             <Avatar onClick={() => handleAvatarClick(3)} src="images/zebra.jpeg"></Avatar></div>

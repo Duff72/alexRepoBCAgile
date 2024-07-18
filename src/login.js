@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 
-export default function Login({ logInOut, isLoggedIn, uid }) {
+export default function Login({ logInOut, isLoggedIn, uid, fullWidth }) {
     const [username, setUsername] = useState(uid || '');
     const profPics = ["images/cat.jpeg", "images/cow.jpeg", "images/nutty.jpeg", "images/giraffe.jpeg"];
     const [profPic, setProfPic] = useState(profPics[0]);
@@ -32,7 +32,7 @@ export default function Login({ logInOut, isLoggedIn, uid }) {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                '& > :not(style)': { p: 2, width: '50ch' },
+                '& > :not(style)': { p: 2, width: fullWidth ? '100%' : '50ch' },
                 mt: 4,
                 mb: 3,
                 bgcolor: "#2D5D7B",
@@ -65,16 +65,18 @@ export default function Login({ logInOut, isLoggedIn, uid }) {
                             style: { color: 'black', padding: '10px' }
                         }}
                         inputProps={{
-                        maxLength: 20 
+                            maxLength: 20 
                         }}
                     />
-                        <div style={{ display: 'flex' }} style={{ display: 'flex' }}><Avatar onClick={() => handleAvatarClick(0)} src="images/cat.jpeg"></Avatar>
-            <Avatar onClick={() => handleAvatarClick(1)} src="images/cow.jpeg"></Avatar>
-            <Avatar onClick={() => handleAvatarClick(2)} src="images/nutty.jpeg"></Avatar>
-            <Avatar onClick={() => handleAvatarClick(3)} src="images/giraffe.jpeg"></Avatar></div>
+                    <div style={{ display: 'flex' }}>
+                        <Avatar onClick={() => handleAvatarClick(0)} src="images/cat.jpeg"></Avatar>
+                        <Avatar onClick={() => handleAvatarClick(1)} src="images/elephant.jpeg"></Avatar>
+                        <Avatar onClick={() => handleAvatarClick(2)} src="images/nutty.jpeg"></Avatar>
+                        <Avatar onClick={() => handleAvatarClick(3)} src="images/zebra.jpeg"></Avatar>
+                    </div>
                     <Button variant="contained" type="submit">Login</Button>
                 </>
             )}
-</Box>
+        </Box>
     );
 }

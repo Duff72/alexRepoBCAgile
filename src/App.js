@@ -102,10 +102,11 @@ function App() {
             <Container maxWidth="lg" style={{ marginTop: '60px' }}>
                 <Grid container spacing={2}>
                     <Grid item xs={12} md={3}>
-                        <Sidebar1 />
+                        <Sidebar1 uid={uid} profPic={profPic} />
+                        {isLoggedIn ? <Login logInOut={logInOut} isLoggedIn={isLoggedIn} uid={uid} fullWidth /> : null}
                     </Grid>
                     <Grid item xs={12} md={6}>
-                        <Login logInOut={logInOut} isLoggedIn={isLoggedIn} uid={uid} />
+                        {!isLoggedIn ? <Login logInOut={logInOut} isLoggedIn={isLoggedIn} uid={uid} /> : null}
                         <AddPost addPost={addPost} isLoggedIn={isLoggedIn} uid={uid} />
                         {filterOn ? (
                             <ShowPosts posts={filteredPosts} editPost={editPost} deletePost={deletePost} />

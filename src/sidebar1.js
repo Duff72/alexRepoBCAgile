@@ -4,7 +4,9 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
 
-const Sidebar1 = () => {
+function Sidebar1({ uid, profPic }) {
+
+
   return (
     <Box
       className="sidebar"
@@ -16,18 +18,17 @@ const Sidebar1 = () => {
       sx={{
         bgcolor: "#2D5D7B",
         color: "white",
-        
       }}
     >
       <Box mb={3}>
         <Avatar
-          src="images/cat.jpeg"
+          src={profPic ? profPic : "images/cat.jpeg"}
           alt="Profile"
           sx={{ width: 100, height: 100, margin: "0 auto" }}
         />
       </Box>
       <Box mb={3}>
-        <Typography variant="h5">Willie Nelson</Typography>
+        <Typography variant="h5">{uid ? uid : "Anonymous"}</Typography>
         <Typography variant="body2" sx={{ color: "#ADB5BD" }}>
           Graphic Designer
         </Typography>
@@ -35,11 +36,11 @@ const Sidebar1 = () => {
       <Box display="flex" justifyContent="space-around" mb={3}>
         <Box textAlign="center">
           <Typography variant="body2">Following</Typography>
-          <Typography variant="h6">34</Typography>
+          <Typography variant="h6">23</Typography>
         </Box>
         <Box textAlign="center">
           <Typography variant="body2">Followers</Typography>
-          <Typography variant="h6">155</Typography>
+          <Typography variant="h6">34</Typography>
         </Box>
       </Box>
       <Button variant="contained" color="primary">
@@ -47,6 +48,6 @@ const Sidebar1 = () => {
       </Button>
     </Box>
   );
-};
+}
 
 export default Sidebar1;

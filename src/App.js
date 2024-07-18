@@ -19,17 +19,23 @@ function App() {
   };
 
   const editPost = (index, updatedPost) => {
-    const newPosts = posts.map((post, i) => (i === index ? updatedPost : post));
+    const displayedPosts = [...posts]
+      .sort((a, b) => new Date(b.dateCreated) - new Date(a.dateCreated));
+    const originalIndex = posts.findIndex(post => post.id === displayedPosts[index].id);
+    const newPosts = posts.map((post, i) => (i === originalIndex ? updatedPost : post));
     setPosts(newPosts);
     localStorage.setItem('posts', JSON.stringify(newPosts)); 
   };
 
   const deletePost = (index) => {
+    const displayedPosts = [...posts]
+      .sort((a, b) => new Date(b.dateCreated) - new Date(a.dateCreated));
+    const originalIndex = posts.findIndex(post => post.id === displayedPosts[index].id);
     const newPosts = [...posts];
-    newPosts.splice(index, 1);
+    newPosts.splice(originalIndex, 1);
     setPosts(newPosts);
     localStorage.setItem('posts', JSON.stringify(newPosts)); 
-  }
+  };
 
   const loadPosts = () => {
     setPosts(JSON.parse(localStorage.getItem('posts'))||[]);
@@ -37,7 +43,7 @@ function App() {
 
   useEffect(() => {
     loadPosts();
-  }, []); // Ensure posts are loaded once when the component mounts
+  }, [posts]); 
 
   const getTrendingTags = () => {
     const tagFrequency = {};

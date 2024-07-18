@@ -20,6 +20,9 @@ let currentUser = function() {
 export default function ShowPosts({ posts, editPost, deletePost }) {
 
   const handleEdit = (index) => {
+    const displayedPosts = [...posts]
+      .sort((a, b) => new Date(b.dateCreated) - new Date(a.dateCreated));
+    const originalIndex = posts.findIndex(post => post.id === displayedPosts[index].id);
     const updatedPost = prompt("Edit your post:", posts[index].post);
     if (updatedPost) {
       editPost(index, { ...posts[index], post: updatedPost });
@@ -32,11 +35,16 @@ export default function ShowPosts({ posts, editPost, deletePost }) {
 
   return (
     <React.Fragment>
-      {posts.map((post, index) => (
+      {posts
+        .slice()
+        .sort((a, b) => new Date(b.dateCreated) - new Date(a.dateCreated))
+        .map((post, index) => (
         <Card key={index} sx={{ marginBottom: 2, bgcolor: "#2D5D7B", borderRadius: 2 }}>
           <CardHeader
             avatar={
-              <Avatar src="images/cat.jpeg"></Avatar>
+              <Avatar src="images/cat.jpeg">
+                P
+              </Avatar>
             }
             title={<Typography variant="h6" color="white">{post.id}</Typography>}
             subheader={<Typography variant="body2">{new Date(post.dateCreated).toLocaleString()}</Typography>}

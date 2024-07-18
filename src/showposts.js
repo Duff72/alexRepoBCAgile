@@ -44,7 +44,7 @@ export default function ShowPosts({ posts, editPost, deletePost }) {
             subheader={<Typography variant="body2" color="#ADB5BD">{new Date(post.dateCreated).toLocaleString()}</Typography>}
           />
           <CardContent>
-            <Typography variant="h5" component="div" color="white>
+            <Typography variant="h5" component="div" color="white">
               {post.post}
             </Typography>
             {post.image && (

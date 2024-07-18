@@ -150,15 +150,20 @@ export default function PrimarySearchAppBar() {
         <p>Messages</p>
       </MenuItem>
       <MenuItem>
-        <IconButton
-          size="large"
-          aria-label="show 17 new notifications"
-          color="inherit"
+        <a
+          href="account.html"
+          style={{ color: "inherit", textDecoration: "none" }}
         >
-          <Badge badgeContent={17} color="error">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
+          <IconButton
+            size="large"
+            aria-label="show 17 new notifications"
+            color="inherit"
+          >
+            <Badge badgeContent={17} color="error">
+              <NotificationsIcon />
+            </Badge>
+          </IconButton>
+        </a>
         <p>Notifications</p>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
@@ -231,15 +236,20 @@ export default function PrimarySearchAppBar() {
                 </Badge>
               </IconButton>
             </a>
-            <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
+            <a
+              href="account.html"
+              style={{ color: "inherit", textDecoration: "none" }}
             >
-              <Badge badgeContent={17} color="error">
-                <NotificationsIcon sx={{ color: "#2D5D7B" }} />
-              </Badge>
-            </IconButton>
+              <IconButton
+                size="large"
+                aria-label="show 17 new notifications"
+                color="inherit"
+              >
+                <Badge badgeContent={17} color="error">
+                  <NotificationsIcon sx={{ color: "#2D5D7B" }} />
+                </Badge>
+              </IconButton>
+            </a>
             <IconButton
               size="large"
               edge="end"

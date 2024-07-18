@@ -44,6 +44,12 @@ export default function AddPost({ addPost }) {
         variant="outlined" 
         value={id}
         onChange={(e) => setId(e.target.value)}
+        InputProps={{
+          style: { backgroundColor: '#ADB5BD', color: 'black', padding: '10px' }
+        }}
+        InputLabelProps={{
+          style: { color: 'black', padding: '10px' }
+        }}
       />
       <TextField 
         id="post" 
@@ -53,6 +59,12 @@ export default function AddPost({ addPost }) {
         rows={4} 
         value={post}
         onChange={(e) => setPost(e.target.value)}
+        InputProps={{
+          style: { backgroundColor: '#ADB5BD', color: 'black', padding: '10px' }
+        }}
+        InputLabelProps={{
+          style: { color: 'black', padding: '10px'}
+        }}
       />
         <TextField 
         id="tags" 
@@ -60,6 +72,12 @@ export default function AddPost({ addPost }) {
         variant="outlined" 
         value={tags}
         onChange={(e) => setTags(e.target.value)}
+        InputProps={{
+          style: { backgroundColor: '#ADB5BD', color: 'black', padding: '10px'}
+        }}
+        InputLabelProps={{
+          style: { color: 'black', padding: '10px' }
+        }}
       />
       <Button variant="contained" type="submit">Submit</Button>
     </Box>

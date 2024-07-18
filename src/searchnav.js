@@ -16,9 +16,10 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import Avatar from "@mui/material/Avatar";
-
+import { useState } from "react";
 
 const Search = styled('div')(({ theme }) => ({
+
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
@@ -60,7 +61,16 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function PrimarySearchAppBar() {
+export default function PrimarySearchAppBar({ searchPosts }) {
+  const [searchTerm, setSearchTerm] = useState('');
+
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    searchPosts(searchTerm);
+    setSearchTerm('');
+  };
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -179,15 +189,19 @@ export default function PrimarySearchAppBar() {
           >
             FENIX
           </Typography>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search>
+          <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', alignItems: 'center' }}>
+            <Search>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder="Search…"
+                inputProps={{ 'aria-label': 'search' }}
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </Search>
+          </Box>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)' }}>
             <Avatar src="images/2.jpg"/>

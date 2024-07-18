@@ -37,13 +37,13 @@ export default function AddPost({ addPost, isLoggedIn, uid, profPic }) {
             onSubmit={handleSubmit}
         >
             {isLoggedIn ? (
-                <Typography variant="h6" sx={{ color: 'white', mb: 2 }}>
-                    Posting as {uid}
+                <Typography variant="h6" sx={{ color: 'white', ml: 4}}>
                 </Typography>
             ) : (
-                <Typography variant="h6" sx={{ color: 'white', mb: 2 }}>
+                <Typography variant="h6" sx={{ color: 'white', ml: 4}}>
                     Posting as Anonymous
                 </Typography>
+
             )}
             <TextField
                 id="post"

@@ -24,14 +24,14 @@ const Sidebar2 = ({ trendingTags }) => {
       }}
     >
       <Typography variant="h6" mb={2}>
-        Trend for you
+        Trending Tags
       </Typography>
       <Divider sx={{ bgcolor: "grey.700" }} />
       <List>
         {trendingTags.map((tag, index) => (
           <Box key={index} mt={2}>
             <ListItem disableGutters>
-              <ListItemText primary={`#${tag}`} primaryTypographyProps={{ sx: { color: 'white' } }} />
+              <ListItemText primary={`#${tag}`} primaryTypographyProps={{ sx: { color: '#ADB5BD' } }} />
             </ListItem>
             {index < trendingTags.length - 1 && <Divider sx={{ bgcolor: 'grey.700' }} />}
           </Box>

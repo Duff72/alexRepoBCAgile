@@ -47,21 +47,29 @@ export default function ShowPosts({ posts, editPost, deletePost }) {
               </Avatar>
             }
             title={<Typography variant="h6" color="white">{post.id}</Typography>}
-            subheader={<Typography variant="body2">{new Date(post.dateCreated).toLocaleString()}</Typography>}
+            subheader={<Typography variant="body2" color="#ADB5BD">{new Date(post.dateCreated).toLocaleString()}</Typography>}
           />
           <CardContent>
             <Typography variant="h5" component="div">
               {post.post}
             </Typography>
-            <Typography variant="body2" color="white">
+            <Typography variant="body2" color="#ADB5BD">
               Tags: {post.tags}
             </Typography>
           </CardContent>
           <CardActions>
-            <Button onClick={() => handleEdit(index)}>
+            <Button sx={{ 
+                ':hover': { 
+                  textDecoration: 'underline' 
+                }
+              }} onClick={() => handleEdit(index)}>
               Edit<EditIcon />
             </Button>
-            <Button onClick={() => handleDelete(index)}>
+            <Button sx={{ 
+                ':hover': { 
+                  textDecoration: 'underline' 
+                }
+              }} onClick={() => handleDelete(index)}>
               Delete<DeleteForeverIcon />
             </Button>
           </CardActions>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile/title>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Link to the external stylesheet -->
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #000;
+        color: #fff;
+        margin: 0;
+        padding: 0;
+        display: flex;
+      }
+      .sidebar {
+        width: 25%;
+        background-color: #1a1a1a;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      .content {
+        width: 75%;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      .sidebar h2,
+      .content h2 {
+        margin-top: 0;
+      }
+      .sidebar ul {
+        list-style: none;
+        padding: 0;
+      }
+      .sidebar ul li {
+        margin: 20px 0;
+      }
+      .sidebar ul li a {
+        color: #fff;
+        text-decoration: none;
+      }
+      .sidebar ul li a:hover {
+        text-decoration: underline;
+      }
+      .content ul {
+        list-style: none;
+        padding: 0;
+      }
+      .content ul li {
+        margin: 20px 0;
+        display: flex;
+        align-items: center;
+      }
+      .content ul li span {
+        margin-left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sidebar">
+      <input
+        type="text"
+        placeholder="Search Settings"
+        style="
+          width: 100%;
+          padding: 10px;
+          box-sizing: border-box;
+          margin-bottom: 20px;
+        "
+      />
+      <ul>
+        <li><a href="#">Your account</a></li>
+        <li><a href="#">Monetization</a></li>
+        <li><a href="#">Premium</a></li>
+        <li><a href="#">Creator Subscriptions</a></li>
+        <li><a href="#">Security and account access</a></li>
+        <li><a href="#">Privacy and safety</a></li>
+        <li><a href="#">Notifications</a></li>
+        <li><a href="#">Accessibility, display, and languages</a></li>
+        <li><a href="#">Additional resources</a></li>
+        <li><a href="#">Help Center</a></li>
+      </ul>
+    </div>
+    <div class="content">
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+  </body>
+</html>

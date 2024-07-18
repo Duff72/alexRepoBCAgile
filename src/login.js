@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 
 export default function Login({ logInOut, isLoggedIn, uid }) {
     const [username, setUsername] = useState(uid || '');
+    const [profPic, setProfPic] = useState()
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -16,6 +17,7 @@ export default function Login({ logInOut, isLoggedIn, uid }) {
     const handleLogout = (event) => {
         event.preventDefault();
         logInOut('', false);
+        setUsername('');
     };
 
     return (
@@ -58,6 +60,7 @@ export default function Login({ logInOut, isLoggedIn, uid }) {
                             style: { color: 'black', padding: '10px' }
                         }}
                     />
+                    <></>
                     <Button variant="contained" type="submit">Login</Button>
                 </>
             )}

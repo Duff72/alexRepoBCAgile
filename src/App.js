@@ -42,11 +42,13 @@ function App() {
     };
 
     const searchPosts = (searchTerm) => {
+        //making it all lower case so not case sensitive
+        const lowerCaseSearchTerm = searchTerm.toLowerCase();
         //filter posts by if searchTerm is userId
-        const filteredPostsById = posts.filter(post => post.id === searchTerm);
+        const filteredPostsById = posts.filter(post => post.id.toLowerCase() === lowerCaseSearchTerm);
         //filter posts by if searchTerm is one of the tags using same methodolgy as getting trending
         const filteredPostsByTag = posts.filter(post =>
-            post.tags.split(/[\s,]+/).some(tag => tag.trim() === searchTerm)
+            post.tags.split(/[\s,]+/).some(tag => tag.trim().toLowerCase() === lowerCaseSearchTerm)
         );
         //combine filtered posts without duplicates
         const combinedFilteredPosts = [...new Set([...filteredPostsById, ...filteredPostsByTag])];

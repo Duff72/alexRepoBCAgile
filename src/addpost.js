@@ -59,6 +59,9 @@ export default function AddPost({ addPost, isLoggedIn, uid }) {
                 InputLabelProps={{
                     style: { color: 'black', padding: '10px' }
                 }}
+                inputProps={{
+                        maxLength: 280 
+                        }}
             />
             <TextField
                 id="tags"
@@ -72,6 +75,9 @@ export default function AddPost({ addPost, isLoggedIn, uid }) {
                 InputLabelProps={{
                     style: { color: 'black', padding: '10px' }
                 }}
+                inputProps={{
+                        maxLength: 280 
+                        }}
             />
             <Button variant="contained" type="submit">Submit</Button>
         </Box>

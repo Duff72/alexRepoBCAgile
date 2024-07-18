@@ -59,6 +59,9 @@ export default function Login({ logInOut, isLoggedIn, uid }) {
                         InputLabelProps={{
                             style: { color: 'black', padding: '10px' }
                         }}
+                        inputProps={{
+                        maxLength: 20 
+                        }}
                     />
                     <></>
                     <Button variant="contained" type="submit">Login</Button>

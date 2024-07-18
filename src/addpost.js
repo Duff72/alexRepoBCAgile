@@ -27,7 +27,12 @@ export default function AddPost({ addPost }) {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        '& > :not(style)': { m: 1, width: '50ch' },
+        '& > :not(style)': { p:2, width: '50ch' },
+        mt: 4,
+        mb: 3,
+        bgcolor: "#2D5D7B",
+        p: 3,
+        borderRadius:2
       }}
       noValidate
       autoComplete="off"
@@ -39,6 +44,12 @@ export default function AddPost({ addPost }) {
         variant="outlined" 
         value={id}
         onChange={(e) => setId(e.target.value)}
+        InputProps={{
+          style: { backgroundColor: '#ADB5BD', color: 'black', padding: '10px' }
+        }}
+        InputLabelProps={{
+          style: { color: 'black', padding: '10px' }
+        }}
       />
       <TextField 
         id="post" 
@@ -48,6 +59,12 @@ export default function AddPost({ addPost }) {
         rows={4} 
         value={post}
         onChange={(e) => setPost(e.target.value)}
+        InputProps={{
+          style: { backgroundColor: '#ADB5BD', color: 'black', padding: '10px' }
+        }}
+        InputLabelProps={{
+          style: { color: 'black', padding: '10px'}
+        }}
       />
         <TextField 
         id="tags" 
@@ -55,6 +72,12 @@ export default function AddPost({ addPost }) {
         variant="outlined" 
         value={tags}
         onChange={(e) => setTags(e.target.value)}
+        InputProps={{
+          style: { backgroundColor: '#ADB5BD', color: 'black', padding: '10px'}
+        }}
+        InputLabelProps={{
+          style: { color: 'black', padding: '10px' }
+        }}
       />
       <Button variant="contained" type="submit">Submit</Button>
     </Box>

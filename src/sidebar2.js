@@ -1,4 +1,4 @@
-// Sidebar2.js
+
 import React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -20,7 +20,6 @@ const Sidebar2 = ({ trendingTags }) => {
       sx={{
         bgcolor: "#2D5D7B",
         color: "white",
-        height: "100vh",
         overflowY: "auto",
       }}
     >

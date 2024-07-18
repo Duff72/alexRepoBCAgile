@@ -10,14 +10,13 @@ const Sidebar1 = () => {
       className="sidebar"
       mt={4}
       mb={3}
-      p={3}
+      p={4}
       borderRadius={2}
       textAlign="center"
       sx={{
         bgcolor: "#2D5D7B",
         color: "white",
-        height: "100vh",
-        overflowY: "auto",
+        
       }}
     >
       <Box mb={3}>
@@ -28,9 +27,9 @@ const Sidebar1 = () => {
         />
       </Box>
       <Box mb={3}>
-        <Typography variant="h5">John Doe</Typography>
+        <Typography variant="h5">Willie Nelson</Typography>
         <Typography variant="body2" sx={{ color: "grey.300" }}>
-          Graphic Designer at Self Employed
+          Graphic Designer On the Road
         </Typography>
       </Box>
       <Box display="flex" justifyContent="space-around" mb={3}>

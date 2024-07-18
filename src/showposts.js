@@ -23,7 +23,7 @@ export default function ShowPosts({ posts, editPost, deletePost }) {
     const displayedPosts = [...posts]
       .sort((a, b) => new Date(b.dateCreated) - new Date(a.dateCreated));
     const originalIndex = posts.findIndex(post => post.id === displayedPosts[index].id);
-    const updatedPost = prompt("Edit your post:", posts[index].post);
+    const updatedPost = prompt("Edit your post:", posts[originalIndex].post);
     if (updatedPost) {
       editPost(index, { ...posts[index], post: updatedPost });
     }

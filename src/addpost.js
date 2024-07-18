@@ -1,18 +1,17 @@
-// AddPost.js
 import './App.css';
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Typography from "@mui/material/Typography";
 import imageCompression from 'browser-image-compression';
 
-export default function AddPost({ addPost }) {
-  const [id, setId] = useState('');
-  const [post, setPost] = useState('');
-  const [tags, setTags] = useState('');
+export default function AddPost({ addPost, isLoggedIn, uid, profPic }) {
+    const [post, setPost] = useState('');
+    const [tags, setTags] = useState('');
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
-  const [dateCreated, setDateCreated] = useState(null);
+    const [dateCreated, setDateCreated] = useState(null);
 
   const handleImageUpload = async (event) => {
     const file = event.target.files[0];
@@ -37,78 +36,79 @@ export default function AddPost({ addPost }) {
     }
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const currentDate = new Date().toISOString(); // Set the current date and time
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const currentDate = new Date().toISOString(); // Set the current date and time
     setDateCreated(currentDate);
-    addPost(id, post, tags, currentDate, imagePreview); // Pass the imagePreview URL and dateCreated
-    setId('');
-    setPost('');
-    setTags('');
+        addPost(post, tags, currentDate, imagePreview); // Pass the imagePreview URL and dateCreated
+        setPost('');
+        setTags('');
     setImage(null);
     setImagePreview(null);
-  };
+    };
 
-  return (
-    <Box
-      component="form"
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        '& > :not(style)': { p: 2, width: '50ch' },
-        mt: 4,
-        mb: 3,
-        bgcolor: "#2D5D7B",
-        p: 3,
-        borderRadius: 2
-      }}
-      noValidate
-      autoComplete="off"
-      onSubmit={handleSubmit}
-    >
-      <TextField 
-        id="user-id" 
-        label="UserID" 
-        variant="outlined" 
-        value={id}
-        onChange={(e) => setId(e.target.value)}
-        InputProps={{
-          style: { backgroundColor: '#ADB5BD', color: 'black', padding: '10px' }
-        }}
-        InputLabelProps={{
-          style: { color: 'black', padding: '10px' }
-        }}
-      />
-      <TextField 
-        id="post" 
-        label="Post" 
-        variant="outlined" 
-        multiline 
-        rows={4} 
-        value={post}
-        onChange={(e) => setPost(e.target.value)}
-        InputProps={{
-          style: { backgroundColor: '#ADB5BD', color: 'black', padding: '10px' }
-        }}
-        InputLabelProps={{
-          style: { color: 'black', padding: '10px' }
-        }}
-      />
-      <TextField 
-        id="tags" 
-        label="Tags" 
-        variant="outlined" 
-        value={tags}
-        onChange={(e) => setTags(e.target.value)}
-        InputProps={{
-          style: { backgroundColor: '#ADB5BD', color: 'black', padding: '10px' }
-        }}
-        InputLabelProps={{
-          style: { color: 'black', padding: '10px' }
-        }}
-      />
-      <Button
+    return (
+        <Box
+            component="form"
+            sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                '& > :not(style)': { p:  2, width: '50ch' },
+                mt: 4,
+                mb: 3,
+                bgcolor: "#2D5D7B",
+                p: 3,
+                borderRadius:  2
+            }}
+            noValidate
+            autoComplete="off"
+            onSubmit={handleSubmit}
+        >
+            {isLoggedIn ? (
+                <Typography variant="h6" sx={{ color: 'white', mb: 2 }}>
+                    Posting as {uid}
+                </Typography>
+            ) : (
+                <Typography variant="h6" sx={{ color: 'white', mb: 2 }}>
+                    Posting as Anonymous
+                </Typography>
+            )}
+            <TextField
+                id="post"
+                label="Post"
+                variant="outlined"
+                multiline
+                rows={4}
+                value={post}
+                onChange={(e) => setPost(e.target.value)}
+                InputProps={{
+                    style: { backgroundColor: '#ADB5BD', color: 'black', padding: '10px' }
+                }}
+                InputLabelProps={{
+                    style: { color: 'black', padding: '10px'  }
+                }}
+                inputProps={{
+                        maxLength: 280 
+                        }}
+            />
+          <TextField
+                id="tags"
+                label="Tags"
+                variant="outlined"
+                value={tags}
+                onChange={(e) => setTags(e.target.value)}
+                InputProps={{
+                    style: { backgroundColor: '#ADB5BD', color: 'black', padding: '10px'  }
+                }}
+                InputLabelProps={{
+                    style: { color: 'black', padding: '10px' }
+                }}
+                inputProps={{
+                        maxLength: 280 
+                        }}
+            />
+            <Button
         variant="contained"
         component="label"
         sx={{ mt: 2, mb: 2 }}
@@ -135,7 +135,7 @@ export default function AddPost({ addPost }) {
         />
       )}
       <Button variant="contained" type="submit">Submit</Button>
-    </Box>
-  );
+        </Box>
+    );
 }
 

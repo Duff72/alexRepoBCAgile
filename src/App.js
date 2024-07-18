@@ -17,8 +17,8 @@ function App() {
     const [uid, setUid] = useState('');
     const [profPic, setProfPic] = useState("images/cat.jpeg");
 
-    const addPost = (post, tags, dateCreated) => {
-        const newPosts = [...posts, { id: isLoggedIn ? uid : 'Anonymous', post, tags, dateCreated, profPic: isLoggedIn ? profPic : "images/cat.jpeg" }];
+    const addPost = (post, tags, dateCreated, image) => {
+        const newPosts = [...posts, { id: isLoggedIn ? uid : 'Anonymous', post, tags, dateCreated, image, profPic: isLoggedIn ? profPic : "images/cat.jpeg" }];
         setPosts(newPosts);
         localStorage.setItem('posts', JSON.stringify(newPosts)); // Save to local storage
     };

@@ -12,8 +12,8 @@ import Container from '@mui/material/Container';
 function App() {
   const [posts, setPosts] = useState(JSON.parse(localStorage.getItem('posts')) || []);
 
-  const addPost = (id, post, tags, dateCreated) => {
-    const newPosts = [...posts, { id, post, tags, dateCreated }];
+  const addPost = (id, post, tags, dateCreated, image) => {
+    const newPosts = [...posts, { id, post, tags, dateCreated, image }];
     setPosts(newPosts);
     localStorage.setItem('posts', JSON.stringify(newPosts)); // Save to local storage
   };

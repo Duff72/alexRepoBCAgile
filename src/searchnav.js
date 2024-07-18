@@ -101,7 +101,12 @@ export default function PrimarySearchAppBar() {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <a
+        href="account.html"
+        style={{ color: "inherit", textDecoration: "none" }}
+      >
+        <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      </a>
     </Menu>
   );
 

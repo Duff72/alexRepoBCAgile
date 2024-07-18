@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Typography from "@mui/material/Typography";
 
-export default function AddPost({ addPost, isLoggedIn, uid }) {
+export default function AddPost({ addPost, isLoggedIn, uid, profPic }) {
     const [post, setPost] = useState('');
     const [tags, setTags] = useState('');
     const [dateCreated, setDateCreated] = useState(null);

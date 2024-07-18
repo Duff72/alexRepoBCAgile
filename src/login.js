@@ -4,20 +4,25 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import Avatar from '@mui/material/Avatar';
 
 export default function Login({ logInOut, isLoggedIn, uid }) {
     const [username, setUsername] = useState(uid || '');
-    const [profPic, setProfPic] = useState()
-
+    const profPics = ["images/cat.jpeg", "images/elephant.jpeg", "images/nutty.jpeg", "images/zebra.jpeg"];
+    const [profPic, setProfPic] = useState(profPics[0]);
     const handleSubmit = (event) => {
         event.preventDefault();
-        logInOut(username, true);
+        logInOut(username, profPic, true);
     };
 
     const handleLogout = (event) => {
         event.preventDefault();
-        logInOut('', false);
+        logInOut('', "images/cat.jpeg", false);
         setUsername('');
+    };
+
+    const handleAvatarClick = (index) => {
+        setProfPic(profPics[index]);
     };
 
     return (
@@ -63,10 +68,13 @@ export default function Login({ logInOut, isLoggedIn, uid }) {
                         maxLength: 20 
                         }}
                     />
-                    <></>
+                        <div><Avatar onClick={() => handleAvatarClick(0)} src="images/cat.jpeg"></Avatar>
+            <Avatar onClick={() => handleAvatarClick(1)} src="images/elephant.jpeg"></Avatar>
+            <Avatar onClick={() => handleAvatarClick(2)} src="images/nutty.jpeg"></Avatar>
+            <Avatar onClick={() => handleAvatarClick(3)} src="images/zebra.jpeg"></Avatar></div>
                     <Button variant="contained" type="submit">Login</Button>
                 </>
             )}
-        </Box>
+</Box>
     );
 }

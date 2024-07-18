@@ -11,6 +11,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import Typography from '@mui/material/Typography';
 
+
 export default function ShowPosts({ posts, editPost, deletePost }) {
   const handleEdit = (index) => {
     const displayedPosts = [...posts]
@@ -35,7 +36,7 @@ export default function ShowPosts({ posts, editPost, deletePost }) {
           <Card key={index} sx={{ marginBottom: 2, bgcolor: "#2D5D7B", borderRadius: 2 }}>
             <CardHeader
               avatar={
-                <Avatar src="images/cat.jpeg">
+                <Avatar src={post.profPic}>
                   P
                 </Avatar>
               }

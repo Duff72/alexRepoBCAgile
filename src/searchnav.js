@@ -1,76 +1,65 @@
-import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
-import Badge from '@mui/material/Badge';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import MoreIcon from '@mui/icons-material/MoreVert';
+import * as React from "react";
+import { styled, alpha } from "@mui/material/styles";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import InputBase from "@mui/material/InputBase";
+import Badge from "@mui/material/Badge";
+import MenuItem from "@mui/material/MenuItem";
+import Menu from "@mui/material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
+import SearchIcon from "@mui/icons-material/Search";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import MailIcon from "@mui/icons-material/Mail";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import MoreIcon from "@mui/icons-material/MoreVert";
 import Avatar from "@mui/material/Avatar";
-import { useState } from "react";
 
-const Search = styled('div')(({ theme }) => ({
-
-  position: 'relative',
+const Search = styled("div")(({ theme }) => ({
+  position: "relative",
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
-  border: '1px solid transparent', // initial border
-  '&:hover': {
+  border: "1px solid transparent", // initial border
+  "&:hover": {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
-    border: '1px solid black', // black border on hover
+    border: "1px solid black", // black border on hover
   },
   marginRight: theme.spacing(2),
   marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
+  width: "100%",
+  [theme.breakpoints.up("sm")]: {
     marginLeft: theme.spacing(3),
-    width: 'auto',
+    width: "auto",
   },
 }));
 
-const SearchIconWrapper = styled('div')(({ theme }) => ({
+const SearchIconWrapper = styled("div")(({ theme }) => ({
   padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  color: '#2D5D7B',
+  height: "100%",
+  position: "absolute",
+  pointerEvents: "none",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  color: "#2D5D7B",
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: '#333333', // dark grey text
-  '& .MuiInputBase-input': {
+  color: "#333333", // dark grey text
+  "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
+    transition: theme.transitions.create("width"),
+    width: "100%",
+    [theme.breakpoints.up("md")]: {
+      width: "20ch",
     },
   },
 }));
 
-export default function PrimarySearchAppBar({ searchPosts }) {
-  const [searchTerm, setSearchTerm] = useState('');
-
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    searchPosts(searchTerm);
-    setSearchTerm('');
-  };
-
+export default function PrimarySearchAppBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -94,51 +83,70 @@ export default function PrimarySearchAppBar({ searchPosts }) {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  const menuId = 'primary-search-account-menu';
+  const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
       anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
+        vertical: "top",
+        horizontal: "right",
       }}
       id={menuId}
       keepMounted
       transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
+        vertical: "top",
+        horizontal: "right",
       }}
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <a
+        href="profile.html"
+        style={{ color: "inherit", textDecoration: "none" }}
+      >
+        <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      </a>
+      <a
+        href="account.html"
+        style={{ color: "inherit", textDecoration: "none" }}
+      >
+        <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      </a>
     </Menu>
   );
 
-  const mobileMenuId = 'primary-search-account-menu-mobile';
+  const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
       anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
+        vertical: "top",
+        horizontal: "right",
       }}
       id={mobileMenuId}
       keepMounted
       transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
+        vertical: "top",
+        horizontal: "right",
       }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
-          </Badge>
-        </IconButton>
+        <a
+          href="messages.html"
+          style={{ color: "inherit", textDecoration: "none" }}
+        >
+          <IconButton
+            size="large"
+            aria-label="show 4 new mails"
+            color="inherit"
+          >
+            <Badge badgeContent={4} color="error">
+              <MailIcon />
+            </Badge>
+          </IconButton>
+        </a>
         <p>Messages</p>
       </MenuItem>
       <MenuItem>
@@ -170,7 +178,7 @@ export default function PrimarySearchAppBar({ searchPosts }) {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed" sx={{ bgcolor: 'white' }}>
+      <AppBar position="fixed" sx={{ bgcolor: "white" }}>
         <Toolbar>
           <IconButton
             size="large"
@@ -179,46 +187,57 @@ export default function PrimarySearchAppBar({ searchPosts }) {
             aria-label="open drawer"
             sx={{ mr: 2 }}
           >
-            <MenuIcon sx={{ color: '#2D5D7B' }} />
+            <MenuIcon sx={{ color: "#2D5D7B" }} />
           </IconButton>
           <Typography
             variant="h6"
             noWrap
             component="div"
-            sx={{ display: { xs: 'none', sm: 'block' }, color: '#2D5D7B' }}
+            sx={{ display: { xs: "none", sm: "block" }, color: "#2D5D7B" }}
           >
             FENIX
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', alignItems: 'center' }}>
-            <Search>
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                placeholder="Search…"
-                inputProps={{ 'aria-label': 'search' }}
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </Search>
-          </Box>
+          <Search>
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+            <StyledInputBase
+              placeholder="Search…"
+              inputProps={{ "aria-label": "search" }}
+            />
+          </Search>
           <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)' }}>
-            <Avatar src="images/2.jpg"/>
+          <Box
+            sx={{
+              position: "absolute",
+              left: "50%",
+              transform: "translateX(-50%)",
+            }}
+          >
+            <Avatar src="images/2.jpg" />
           </Box>
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton size="large" aria-label="show 4 new mails" color="white">
-              <Badge badgeContent={4} color="error">
-                <MailIcon sx={{ color: '#2D5D7B' }} />
-              </Badge>
-            </IconButton>
+          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            <a
+              href="messages.html"
+              style={{ color: "inherit", textDecoration: "none" }}
+            >
+              <IconButton
+                size="large"
+                aria-label="show 4 new mails"
+                color="white"
+              >
+                <Badge badgeContent={4} color="error">
+                  <MailIcon sx={{ color: "#2D5D7B" }} />
+                </Badge>
+              </IconButton>
+            </a>
             <IconButton
               size="large"
               aria-label="show 17 new notifications"
               color="inherit"
             >
               <Badge badgeContent={17} color="error">
-                <NotificationsIcon sx={{ color: '#2D5D7B' }} />
+                <NotificationsIcon sx={{ color: "#2D5D7B" }} />
               </Badge>
             </IconButton>
             <IconButton
@@ -230,10 +249,10 @@ export default function PrimarySearchAppBar({ searchPosts }) {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <AccountCircle sx={{ color: '#2D5D7B' }} />
+              <AccountCircle sx={{ color: "#2D5D7B" }} />
             </IconButton>
           </Box>
-          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
               aria-label="show more"
@@ -242,7 +261,7 @@ export default function PrimarySearchAppBar({ searchPosts }) {
               onClick={handleMobileMenuOpen}
               color="inherit"
             >
-              <MoreIcon sx={{ color: '#2D5D7B' }} />
+              <MoreIcon sx={{ color: "#2D5D7B" }} />
             </IconButton>
           </Box>
         </Toolbar>

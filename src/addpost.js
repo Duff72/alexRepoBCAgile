@@ -12,10 +12,14 @@ export default function AddPost({ addPost, isLoggedIn, uid, profPic }) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        setDateCreated(new Date().toISOString()); // Set the current date and time
+        setDateCreated(new Date().toISOString());
+        if (post !== ''){ // Set the current date and time
         addPost(post, tags, new Date().toISOString());
         setPost('');
-        setTags('');
+        setTags('');}
+        else {
+            return
+        }
     };
 
     return (

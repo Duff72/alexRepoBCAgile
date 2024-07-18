@@ -16,15 +16,25 @@ import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import Avatar from "@mui/material/Avatar";
+import Drawer from "@mui/material/Drawer";
+import Divider from "@mui/material/Divider";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
+import CssBaseline from "@mui/material/CssBaseline";
+
+const drawerWidth = 240;
+const navItems = ["Home", "About", "Contact"];
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
-  border: "1px solid transparent", // initial border
+  border: "1px solid transparent",
   "&:hover": {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
-    border: "1px solid black", // black border on hover
+    border: "1px solid black",
   },
   marginRight: theme.spacing(2),
   marginLeft: 0,
@@ -47,7 +57,7 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "#333333", // dark grey text
+  color: "#333333",
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
@@ -59,9 +69,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function PrimarySearchAppBar() {
+export default function PrimarySearchAppBar(props) {
+  const { window } = props;
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -81,6 +93,10 @@ export default function PrimarySearchAppBar() {
 
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
+  };
+
+  const handleDrawerToggle = () => {
+    setMobileOpen((prevState) => !prevState);
   };
 
   const menuId = "primary-search-account-menu";
@@ -176,8 +192,30 @@ export default function PrimarySearchAppBar() {
     </Menu>
   );
 
+  const drawer = (
+    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
+      <Typography variant="h6" sx={{ my: 2 }}>
+        FENIX
+      </Typography>
+      <Divider />
+      <List>
+        {navItems.map((item) => (
+          <ListItem key={item} disablePadding>
+            <ListItemButton sx={{ textAlign: "center" }}>
+              <ListItemText primary={item} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+    </Box>
+  );
+
+  const container =
+    window !== undefined ? () => window().document.body : undefined;
+
   return (
     <Box sx={{ flexGrow: 1 }}>
+      <CssBaseline />
       <AppBar position="fixed" sx={{ bgcolor: "white" }}>
         <Toolbar>
           <IconButton
@@ -185,6 +223,7 @@ export default function PrimarySearchAppBar() {
             edge="start"
             color="inherit"
             aria-label="open drawer"
+            onClick={handleDrawerToggle}
             sx={{ mr: 2 }}
           >
             <MenuIcon sx={{ color: "#2D5D7B" }} />
@@ -224,7 +263,7 @@ export default function PrimarySearchAppBar() {
               <IconButton
                 size="large"
                 aria-label="show 4 new mails"
-                color="white"
+                color="inherit"
               >
                 <Badge badgeContent={4} color="error">
                   <MailIcon sx={{ color: "#2D5D7B" }} />
@@ -266,6 +305,26 @@ export default function PrimarySearchAppBar() {
           </Box>
         </Toolbar>
       </AppBar>
+      <nav>
+        <Drawer
+          container={container}
+          variant="temporary"
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          ModalProps={{
+            keepMounted: true,
+          }}
+          sx={{
+            display: { xs: "block", sm: "none" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+            },
+          }}
+        >
+          {drawer}
+        </Drawer>
+      </nav>
       {renderMobileMenu}
       {renderMenu}
     </Box>

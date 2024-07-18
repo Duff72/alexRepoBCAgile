@@ -29,7 +29,7 @@ const Sidebar1 = () => {
       <Box mb={3}>
         <Typography variant="h5">Willie Nelson</Typography>
         <Typography variant="body2" sx={{ color: "#ADB5BD" }}>
-          Graphic Designer at On the Road Again
+          Graphic Designer
         </Typography>
       </Box>
       <Box display="flex" justifyContent="space-around" mb={3}>

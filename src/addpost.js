@@ -38,16 +38,6 @@ export default function AddPost({ addPost, isLoggedIn, uid, profPic }) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-<<<<<<< HEAD
-        setDateCreated(new Date().toISOString());
-        if (post !== ''){ // Set the current date and time
-        addPost(post, tags, new Date().toISOString());
-        setPost('');
-        setTags('');}
-        else {
-            return
-        }
-=======
         const currentDate = new Date().toISOString(); // Set the current date and time
     setDateCreated(currentDate);
     if(post !== ''){
@@ -57,7 +47,6 @@ export default function AddPost({ addPost, isLoggedIn, uid, profPic }) {
     setImage(null);
     setImagePreview(null);}
     else{return}
->>>>>>> 8f06e56061718e45b937278d46068f2e47e9c78b
     };
 
     return (
@@ -79,13 +68,14 @@ export default function AddPost({ addPost, isLoggedIn, uid, profPic }) {
             onSubmit={handleSubmit}
         >
             {isLoggedIn ? (
-                <Typography variant="h6" sx={{ color: 'white', mb: 2 }}>
+                <Typography variant="h6" sx={{ color: 'white', ml: 4}}>
                     Posting as {uid}
                 </Typography>
             ) : (
-                <Typography variant="h6" sx={{ color: 'white', mb: 2 }}>
+                <Typography variant="h6" sx={{ color: 'white', ml: 4}}>
                     Posting as Anonymous
                 </Typography>
+
             )}
             <TextField
                 id="post"

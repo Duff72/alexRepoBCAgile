@@ -103,7 +103,7 @@ function App() {
                 <Grid container spacing={2}>
                     <Grid item xs={12} md={3}>
                         <Sidebar1 uid={uid} profPic={profPic} />
-                        {isLoggedIn ? <Login logInOut={logInOut} isLoggedIn={isLoggedIn} uid={uid} /> : null}
+                        {isLoggedIn ? <Login logInOut={logInOut} isLoggedIn={isLoggedIn} uid={uid} fullWidth /> : null}
                     </Grid>
                     <Grid item xs={12} md={6}>
                         {!isLoggedIn ? <Login logInOut={logInOut} isLoggedIn={isLoggedIn} uid={uid} /> : null}

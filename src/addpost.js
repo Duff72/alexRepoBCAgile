@@ -4,18 +4,46 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Typography from "@mui/material/Typography";
+import imageCompression from 'browser-image-compression';
 
 export default function AddPost({ addPost, isLoggedIn, uid, profPic }) {
     const [post, setPost] = useState('');
     const [tags, setTags] = useState('');
     const [dateCreated, setDateCreated] = useState(null);
+    const [image, setImage] = useState(null);
+    const [imagePreview, setImagePreview] = useState(null);
+
+  const handleImageUpload = async (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const options = {
+        maxSizeMB: 1,
+        maxWidthOrHeight: 1920,
+        useWebWorker: true
+      };
+
+      try {
+        const compressedFile = await imageCompression(file, options);
+        const reader = new FileReader();
+        reader.readAsDataURL(compressedFile);
+        reader.onloadend = () => {
+          setImage(compressedFile);
+          setImagePreview(reader.result);
+        };
+      } catch (error) {
+        console.error('Error compressing the image', error);
+      }
+    }
+  };
 
     const handleSubmit = (event) => {
         event.preventDefault();
         setDateCreated(new Date().toISOString()); // Set the current date and time
-        addPost(post, tags, new Date().toISOString());
+        addPost(post, tags, new Date().toISOString(), imagePreview);
         setPost('');
         setTags('');
+        setImage(null);
+        setImagePreview(null);
     };
 
     return (
@@ -79,6 +107,32 @@ export default function AddPost({ addPost, isLoggedIn, uid, profPic }) {
                         maxLength: 280 
                         }}
             />
+            <Button
+              variant="contained"
+              component="label"
+              sx={{ mt: 2, mb: 2 }}
+            >
+              Upload Image
+              <input
+                type="file"
+                hidden
+                accept="image/*"
+                onChange={handleImageUpload}
+              />
+            </Button>
+            {imagePreview && (
+              <img
+                src={imagePreview}
+                alt="Preview"
+                style={{
+                  marginTop: '10px',
+                  maxWidth: '100%',
+                  height: 'auto',
+                  objectFit: 'cover',
+                  borderRadius: '8px',
+                }}
+              />
+            )}            
             <Button variant="contained" type="submit">Submit</Button>
         </Box>
     );

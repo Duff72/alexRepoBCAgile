@@ -35,7 +35,7 @@ export default function ShowPosts({ posts, editPost, deletePost }) {
         .map((post, index) => (
           <Card key={index} sx={{ marginBottom: 2, bgcolor: '#2D5D7B', borderRadius: 2 }}>
             <CardHeader
-              avatar={<Avatar src="images/cat.jpeg">P</Avatar>}
+              avatar={<Avatar src={post.profPic}>P</Avatar>}
               title={<Typography variant="h6" color="white">{post.id}</Typography>}
               subheader={<Typography variant="body2" color="#ADB5BD">{new Date(post.dateCreated).toLocaleString()}</Typography>}
             />

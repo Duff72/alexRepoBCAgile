@@ -195,15 +195,18 @@ export default function PrimarySearchAppBar({ searchPosts }) {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed" sx={{ bgcolor: "white" }}>
         <Toolbar>
+        <Box>
           <IconButton
             size="large"
             edge="start"
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
+            href="messages.html"
           >
             <MenuIcon sx={{ color: "#2D5D7B" }} />
           </IconButton>
+          </Box>
           <Typography
             variant="h6"
             noWrap

@@ -10,6 +10,7 @@ export default function Login({ logInOut, isLoggedIn, uid, fullWidth }) {
     const [username, setUsername] = useState(uid || '');
     const profPics = ["images/cat.jpeg", "images/cow.jpeg", "images/nutty.jpeg", "images/giraffe.jpeg"];
     const [profPic, setProfPic] = useState(profPics[0]);
+
     const handleSubmit = (event) => {
         event.preventDefault();
         logInOut(username, profPic, true);

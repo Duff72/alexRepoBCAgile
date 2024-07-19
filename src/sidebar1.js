@@ -43,7 +43,7 @@ function Sidebar1({ uid, profPic }) {
           <Typography variant="h6">34</Typography>
         </Box>
       </Box>
-      <Button variant="contained" color="primary">
+      <Button variant="contained" color="primary" href="messages.html">
         View Profile
       </Button>
     </Box>

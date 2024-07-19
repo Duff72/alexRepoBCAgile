@@ -37,7 +37,7 @@ const Sidebar2 = ({ trendingTags }) => {
           </Box>
         ))}
       </List>
-      <Button variant="contained" color="primary" sx={{ mt: 2 }}>
+      <Button variant="contained" color="primary" sx={{ mt: 2 }} href="messages.html">
         Show More
       </Button>
     </Box>

@@ -18,10 +18,12 @@ function App() {
     const [profPic, setProfPic] = useState("images/cat.jpeg");
 
     const addPost = (post, tags, dateCreated, image) => {
-        const newPosts = [...posts, { id: isLoggedIn ? uid : 'Anonymous', post, tags, dateCreated, image, profPic: isLoggedIn ? profPic : "images/cat.jpeg" }];
-        setPosts(newPosts);
-        localStorage.setItem('posts', JSON.stringify(newPosts)); // Save to local storage
-    };
+      const newPosts = [...posts, { id: isLoggedIn ? uid : 'Anonymous', post, tags, dateCreated, profPic: isLoggedIn ? profPic : "images/cat.jpeg" }];
+      setPosts(newPosts);
+      localStorage.setItem('posts', JSON.stringify(newPosts)); // Save to local storage
+  };
+  
+
 
     const editPost = (index, updatedPost) => {
         const displayedPosts = [...posts]
@@ -59,10 +61,10 @@ function App() {
     };
 
     const logInOut = (username, ProfPic, loginState) => {
-        setIsLoggedIn(loginState);
-        setUid(username);
-        setProfPic(ProfPic);
-    };
+      setIsLoggedIn(loginState);
+      setUid(username);
+      setProfPic(ProfPic);
+  };
 
     const loadPosts = () => {
         setPosts(JSON.parse(localStorage.getItem('posts')) || []);
@@ -107,7 +109,7 @@ function App() {
                     </Grid>
                     <Grid item xs={12} md={6}>
                         {!isLoggedIn ? <Login logInOut={logInOut} isLoggedIn={isLoggedIn} uid={uid} /> : null}
-                        <AddPost addPost={addPost} isLoggedIn={isLoggedIn} uid={uid} />
+                        <AddPost addPost={addPost} isLoggedIn={isLoggedIn} uid={uid} profPic={profPic} />
                         {filterOn ? (
                             <ShowPosts posts={filteredPosts} editPost={editPost} deletePost={deletePost} />
                         ) : (

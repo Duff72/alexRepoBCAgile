@@ -1,3 +1,4 @@
+// Import necessary styles and libraries
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import AddPost from "./addpost";
@@ -10,6 +11,7 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 
 function App() {
+    // State variables to manage posts, filtered posts, filter status, login status, user ID, and profile picture
     const [posts, setPosts] = useState(JSON.parse(localStorage.getItem('posts')) || []);
     const [filteredPosts, setFilteredPosts] = useState([]);
     const [filterOn, setFilterOn] = useState(false);
@@ -17,12 +19,14 @@ function App() {
     const [uid, setUid] = useState('');
     const [profPic, setProfPic] = useState("images/cat.jpeg");
 
+    // Function to add a new post
     const addPost = (post, tags, dateCreated, image) => {
         const newPosts = [...posts, { id: isLoggedIn ? uid : 'Anonymous', post, tags, dateCreated, image, profPic: isLoggedIn ? profPic : "images/cat.jpeg" }];
         setPosts(newPosts);
         localStorage.setItem('posts', JSON.stringify(newPosts)); // Save to local storage
     };
 
+    // Function to edit an existing post
     const editPost = (index, updatedPost) => {
         const displayedPosts = [...posts]
             .sort((a, b) => new Date(b.dateCreated) - new Date(a.dateCreated));
@@ -32,6 +36,7 @@ function App() {
         localStorage.setItem('posts', JSON.stringify(newPosts));
     };
 
+    // Function to delete a post
     const deletePost = (index) => {
         const displayedPosts = [...posts]
             .sort((a, b) => new Date(b.dateCreated) - new Date(a.dateCreated));
@@ -42,36 +47,41 @@ function App() {
         localStorage.setItem('posts', JSON.stringify(newPosts));
     };
 
+    // Function to search for posts based on a search term
     const searchPosts = (searchTerm) => {
-        //making it all lower case so not case sensitive
+        // Convert the search term to lowercase for case-insensitive comparison
         const lowerCaseSearchTerm = searchTerm.toLowerCase();
-        //filter posts by if searchTerm is userId
+        // Filter posts by user ID
         const filteredPostsById = posts.filter(post => post.id.toLowerCase() === lowerCaseSearchTerm);
-        //filter posts by if searchTerm is one of the tags using same methodolgy as getting trending
+        // Filter posts by tags
         const filteredPostsByTag = posts.filter(post =>
             post.tags.split(/[\s,]+/).some(tag => tag.trim().toLowerCase() === lowerCaseSearchTerm)
         );
-        //combine filtered posts without duplicates
+        // Combine filtered posts without duplicates
         const combinedFilteredPosts = [...new Set([...filteredPostsById, ...filteredPostsByTag])];
-        setFilteredPosts(combinedFilteredPosts)
+        setFilteredPosts(combinedFilteredPosts);
         localStorage.setItem('filteredposts', JSON.stringify(filteredPosts));
         setFilterOn(true);
     };
 
+    // Function to handle login/logout
     const logInOut = (username, ProfPic, loginState) => {
         setIsLoggedIn(loginState);
         setUid(username);
         setProfPic(ProfPic);
     };
 
+    // Function to load posts from local storage
     const loadPosts = () => {
         setPosts(JSON.parse(localStorage.getItem('posts')) || []);
     };
 
+    // useEffect hook to load posts when the component mounts
     useEffect(() => {
         loadPosts();
     }, []);
 
+    // Function to get trending tags from posts
     const getTrendingTags = () => {
         const tagFrequency = {};
         posts.forEach(post => {
@@ -98,22 +108,27 @@ function App() {
 
     return (
         <div>
+            {/* Primary search app bar component */}
             <PrimarySearchAppBar searchPosts={searchPosts} />
             <Container maxWidth="lg" style={{ marginTop: '60px' }}>
                 <Grid container spacing={2}>
+                    {/* Sidebar and login components */}
                     <Grid item xs={12} md={3}>
                         <Sidebar1 uid={uid} profPic={profPic} />
                         {isLoggedIn ? <Login logInOut={logInOut} isLoggedIn={isLoggedIn} uid={uid} fullWidth /> : null}
                     </Grid>
                     <Grid item xs={12} md={6}>
                         {!isLoggedIn ? <Login logInOut={logInOut} isLoggedIn={isLoggedIn} uid={uid} /> : null}
+                        {/* Add post component */}
                         <AddPost addPost={addPost} isLoggedIn={isLoggedIn} uid={uid} profPic={profPic}/>
+                        {/* Show posts component */}
                         {filterOn ? (
                             <ShowPosts posts={filteredPosts} editPost={editPost} deletePost={deletePost} />
                         ) : (
                             <ShowPosts posts={posts} editPost={editPost} deletePost={deletePost} />
                         )}
                     </Grid>
+                    {/* Sidebar with trending tags */}
                     <Grid item xs={12} md={3}>
                         <Sidebar2 trendingTags={getTrendingTags()} />
                     </Grid>
